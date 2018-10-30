@@ -1,0 +1,12 @@
+https://github.com/JakeWoratzeck/Software-Engineering-Final-Project.git
+
+Base URL: ec2-54-211-195-91.compute-1.amazonaws.com
+
+Site URL: ec2-54-211-195-91.compute-1.amazonaws.com/Software-Engineering-Final-Project
+SSH Keys are in the github
+
+DB User: root
+DB PW: Capstone18
+ec2-54-211-195-91.compute-1.amazonaws.com/phpMyAdmin
+
+

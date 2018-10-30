@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Burbank';
+    src: url('BurbankBigCondensed-Black.ttf') format('truetype');
+}
+
+
+* {
+    font-family: 'Burbank';
+}
+        
+#mainContainer{
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px;
+}
+
+.logoutWrapper {
+  text-align: center;
+}
+
+
+.greenButton{
+  display: block;
+  width: 240px;
+  height: 40px;
+  padding: 0;
+  margin: 10px auto;
+  font-size: 20px;
+  color: #fff;
+  background-color: #22c08a;
+  border: none;
+  border-radius: 20px;
+  transition: background-color .10s ease-in-out;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  text-align: center;
+}
+
+.greenButton:hover {
+  background-color: #26d69a;
+}
+
+.greenButton:active {
+  background-color: #1eaa7a;
+}
+
+.redButton{
+  display: block;
+  width: 240px;
+  height: 40px;
+  padding: 0;
+  margin: 10px auto;
+  font-size: 20px;
+  color: #fff;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 20px;
+  transition: background-color .10s ease-in-out;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  text-align: center;
+}
+
+.redButton:hover {
+  background-color: #ff6666;
+}
+
+.redButton:active {
+  background-color: #cc0000
+}
+body{
+  height: 100%;
+  width: 100%;
+  background-image:url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");   background-size: cover;
+  color: #fff;
+}
+
+.titleWrapper {
+	font-size: 60px;
+}
+
+th {
+	font-size: 30px;
+	text-align: center;
+	color: white;
+}
+
+table {
+	font-size: 25px;
+
+}
+
+#loginWidget {
+    background-color: #EEE;
+    border: 1px solid #DDD;
+    padding: 0.5em 0;
+    border-radius: 10px 10px 10px 10px;
+    color: black;
+    
+}
+
+
+
