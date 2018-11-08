@@ -7,9 +7,9 @@ You can either log in or create an account and once logged in just pick a Game T
 Jake Woratzeck (Product Owner) </br>
 Henry Heinze (System Administrator) </br>
 Lee Offir </br>
-Youngbin Ha </br>
+Tristin Snyder  </br>
 Austin Parrish (Scrum Master) </br>
-Chase Scott  
+Nathaniel Banderas
 
 # Website
 [Fortnite Friend Finder](http://ec2-54-82-199-223.compute-1.amazonaws.com)
