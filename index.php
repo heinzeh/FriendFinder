@@ -42,7 +42,7 @@
 		//$hashedPassword = hash('sha256', $password);
 			if ($password == $row['password'] && $password != "") {
 				$_SESSION['loggedin'] = $username;
-				header("Location: friendQuery.php");
+				header("Location: social.php");
 				
 			} 
 			else {	
