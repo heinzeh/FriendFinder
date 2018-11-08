@@ -1,4 +1,3 @@
-//Update Session locations
 <?php
 	
 	if(!session_start()) {
