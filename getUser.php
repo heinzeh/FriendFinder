@@ -31,7 +31,7 @@
 		
 		
 		if($firstName != "" && $lastName != ""){
-			$sql="UPDATE Users SET firstName='" . $firstName . "', lastName='" . $lastName . "' WHERE username='" . $loggedIn . "';";
+			$sql="UPDATE members SET firstName='" . $firstName . "', lastName='" . $lastName . "' WHERE username='" . $loggedIn . "';";
 		
 			if($firstName != "" && $lastName != "" && $password != ""){
 				if($password != $passwordConfirm){
@@ -41,7 +41,7 @@
 				}
 				else{
 					$hashedPassword = hash('sha256', $password);
-					$sql="UPDATE Users SET firstName='" . $firstName . "', lastName='" . $lastName . "', password='" . $hashedPassword . "' WHERE username='" . $loggedIn . "';";
+					$sql="UPDATE Users SET firstName='" . $firstName . "', lastName='" . $lastName . "', password='" . $password . "' WHERE username='" . $loggedIn . "';";
 				}
 			}
 			

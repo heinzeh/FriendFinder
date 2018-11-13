@@ -17,7 +17,7 @@
 
 <html>
 <head>
-	<title>MovieInfo Login</title>
+	<title>Fortnite Friend Finder</title>
 	<meta charset="UTF-8">
 	<link href="app.css" rel="stylesheet" type="text/css">
     <script src="jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
@@ -43,7 +43,6 @@
             }
         ?>
 
-        //Make New backend file
         <form action="getUser.php" method="POST">
             
             <input type="hidden" name="action" value="updateUser">
@@ -54,7 +53,7 @@
 		    	die('Could not connect: ' . mysqli_error($con));
 			}
 			
-			$sql="SELECT * FROM Users WHERE username = '" . $loggedIn . "'";
+			$sql="SELECT * FROM members WHERE username = '" . $loggedIn . "'";
 			$result = mysqli_query($con,$sql);
 			while($row = mysqli_fetch_array($result)) {
 				echo "<div class='stack'><label for='username'>Username:</label><input type='text' id='username' name='username' disabled='disabled' value='". $row[username] . "' class='ui-widget-content ui-corner-all'></div>";
@@ -73,7 +72,5 @@
 
     
     <div class="logoutWrapper"><button class="logoutButton" onclick="location.href='social.php';">Cancel</button></div>
-    
-    /*<div class="logoutWrapper"><button class="logoutButton" onclick="location.href='deleteAccount.php';">Delete Account</button></div>*/
 </body>
 </html>
