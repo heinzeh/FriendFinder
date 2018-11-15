@@ -1,5 +1,5 @@
 # Software Engineering Final Project
-CS4320 Final Project </br></br>
+Capstone Project </br></br>
 For our project, we created a website for a 'Fortnite: Battle Royale' club to match yourself with people who play the same Game Type as you. </br></br>
 You can either log in or create an account and once logged in just pick a Game Type and find team members!</br>
 
