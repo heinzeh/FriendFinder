@@ -1,10 +1,15 @@
 <?php
 
-session_start();
-if($_SESSION['loggedin'] == FALSE){
-header("Location:index.php");
-}
+    session_start();
+    if($_SESSION['loggedin'] == FALSE){
+        header("Location:index.php");
+    }
 
+    require('Persistence.php');
+    $pageID = 1;
+    $db = new Persistence();
+    $posts = $db->get_posts($pageID);
+    $total_posts = count($posts);
 ?>
 <html>
 <title>FFF Group Social Media Template</title>
@@ -26,7 +31,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Table"><i class="fa fa-globe"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="My Account">
-    <img src="me.jpg" class="w3-circle" style="height:23px;width:23px" alt="Profile" onclick="location.href='getUser.php';">
+    <img src="me.jpg" class="w3-circle" style="height:23px;width:23px" alt="Profile" onclick="location.href='profile.php';">
   </a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
@@ -37,7 +42,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <a href="#" class="w3-bar-item w3-button">Lee Offir created looking for group post</a>
     </div>
   </div>
-        <button class="w3-button w3-left"><a href="friendQuery.php">FriendFinder</button>
+<button class="w3-button w3-left" onclick= "location.href='friendQuery.php';">FriendFinder</button>
  
  <button class="redButton w3-button w3-right" onclick="location.href='logout.php';">Log Out</button>
  </div>
@@ -152,53 +157,75 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <!-- Middle Column -->
     <div class="w3-col m7">
 
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Social Media template</h6>
-              <p contenteditable="true" class="w3-border w3-padding">Status: Looking for Group</p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
-            </div>
-          </div>
+
+    <section id="comments" class="body" style="padding-left: 10px; padding-right: 10px;">
+    <div class="w3-card w3-round w3-white" style="padding: 10px;">
+        <header>
+        <h2>Make a Post</h2>
+        </header>
+        <div id="respond">
+
+        <form action="post_comment.php" method="post" id="commentform">
+
+        <input type="hidden" name="username" id="username" value="<?php echo($_SESSION['loggedin']); ?>" required="required">
+
+        <textarea name="postText" id="postText" rows="4" required="required" style="width: 100%; padding-right: 10; margin-bottom: 20; resize: none;"></textarea>
+
+        <input type="hidden" name="pageID" value="<?php echo($pageID); ?>" id="postID" />
+
+        <label for="postImage" style="margin-bottom: 20;">Imgur Link
+            <input type="text" name="postImage" id="postImage" value="" />
+        </label>
+
+        <label for="postVideo" style="margin-bottom: 20;">Youtube Link
+            <input type="text" name="postVideo" id="postVideo" value="" />
+        </label>
+
+        <input type="hidden" name="postID" value="<?php echo(++$total_posts); ?>" id="postID" />
+
+        <input name="submit" type="submit" value="Post" class="w3-button w3-theme">
+
+        </form>
+
         </div>
-      </div>
+    </div>
+        <ol id="comments-list" style="list-style-type:none; padding-left: 0;">
+        <?php
+        foreach ($posts as &$post) {
+                ?>
+            <li>
+            <div class="w3-container w3-card w3-white w3-round w3-margin" id="post_<?php echo($post['id']); ?>"><br>
+            <img src="austin.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            <h4><?php echo($post['username']); ?></h4><br>
+            <hr class="w3-clear">
+            <p><?php echo($post['postText']);?></p>
 
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="austin.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">1 min</span>
-        <h4>Austin Parrish</h4><br>
-        <hr class="w3-clear">
-        <p>Hey guys check out this awesome 18 kill win! #18killsolo</p>
-          <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-half">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/lZjah5-D1nI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>          </div>
+            <?php
+                if($post['postImage'] != ""){
+                
+                
+                    echo('<blockquote class="imgur-embed-pub" lang="en" data-id="a/' . $post['postImage'] . '" data-context="false"><a href="//imgur.com/' . $post['postImage'] . '">title</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>');
+                }
+                
+            ?>
+            <?php
+                if($post['postVideo'] != ""){
+                    
+                    echo('<div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;"> <iframe src="http://www.youtube.com/embed/' . $post['postVideo'] . '" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>');
+                }
+
+            ?>
+
         </div>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
-      </div>
+        </li>
+        <?php
+            }
+            ?>
 
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="me.jpg" alt="me" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">16 min</span>
-        <h4>Lee Offir</h4><br>
-        <hr class="w3-clear">
-        <p>Hey guys looking for another duo team to play squads with! LMK in the comments!!</p>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
-      </div>
+        </ol>
 
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="tristin.jpg" alt="tristin" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">32 min</span>
-        <h4>Tristin Snyder</h4><br>
-        <hr class="w3-clear">
-        <p>Have you seen this win?</p>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/w_slaGedIiI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>        <p>Guys check out Marshmello and Ninja playing together!</p>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
-      </div>
 
+</section>
     <!-- End Middle Column -->
     </div>
 

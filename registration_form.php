@@ -37,7 +37,7 @@
             <input type="hidden" name="action" value="do_registration">
             
             <div class="stack">
-                <label for="username">Username:</label>
+                <label for="username">Epic Games Username:</label>
                 <input type="text" id="username" name="username" class="ui-widget-content ui-corner-all" autofocus value="<?php print $username; ?>">
             </div>
             
@@ -76,8 +76,8 @@
            		<select name="console" id="console">
 		   			<option disabled selected value></option>
 					<option value="pc">PC</option>
-  					<option value="xbox">Xbox One</option>
-  					<option value="ps4">PS4</option>
+  					<option value="xbl">Xbox One</option>
+  					<option value="psn">PS4</option>
 		   	</select>
            </div>
            

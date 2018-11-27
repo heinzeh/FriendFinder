@@ -8,7 +8,7 @@
 	$loggedIn = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
 	
 	if ($loggedIn) {
-		header("Location: friendQuery.php");
+		header("Location: social.php");
 		exit;
 	}
 	
@@ -39,20 +39,23 @@
 		
 		$row = mysqli_fetch_array($result);
 			
-		//$hashedPassword = hash('sha256', $password);
-			if ($password == $row['password'] && $password != "") {
-				$_SESSION['loggedin'] = $username;
-				header("Location: social.php");
+		$hashedPassword = hash('sha256', $password);
+			
+		if ($hashedPassword == $row['password'] && $hashedPassword != "") {
+			$_SESSION['loggedin'] = $username;
+			header("Location: social.php");
 				
-			} 
-			else {	
-				$error = 'Incorrect username or password';
-				require "loginform.php";
-				
-			}	
+		} 
+		else {	
+			$error = 'Incorrect username or password';
+			require "loginform.php";
+			
+		}	
 		
 		
 	}
+	
+	
 	
 	function login_form() {
 		$username = "";

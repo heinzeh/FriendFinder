@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 
 <html>
 <head>
@@ -51,6 +51,8 @@
             
         </form>
         <button class="greenButton" style="font-family: 'Burbank';" onclick="location.href='register.php';">Sign Up</button>
+        
+        <button class="redButton" style="font-family: 'Burbank';" onclick="location.href='password_form.php';">Forgot Password</button>
      </div>
     </div>
 </body>

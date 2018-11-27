@@ -104,5 +104,20 @@ table {
     
 }
 
+ol, ol li {
+    list-style-type:none;
+    margin-left: 0;
+    padding-left: 0;
+}
 
+ol#comments-list {
+    margin-left: 0;
+    padding-left: 0;
+    
+}
+
+#comments {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
