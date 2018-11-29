@@ -19,7 +19,7 @@ class Persistence {
   function get_posts($pageID) {
     $posts = array();
 
-      $con = mysqli_connect('localhost' ,'root','Capstone18','FFF');
+      $con = mysqli_connect('localhost','root','Capstone18','FFF');
       if (!$con) {
           die('Could not connect: ' . mysqli_error($con));
       }
@@ -57,7 +57,7 @@ class Persistence {
     
     $added = false;
     
-      $con = mysqli_connect('localhost' ,'root','Capstone18','FFF');
+      $con = mysqli_connect('localhost','root','Capstone18','FFF');
       if (!$con) {
           die('Could not connect: ' . mysqli_error($con));
       }
@@ -88,6 +88,8 @@ class Persistence {
       $postText = mysqli_real_escape_string($con, $vars['postText']);
       $pageID = 1;
       $postVideo = mysqli_real_escape_string($con, $videoCode);
+      $avatar = $vars['avatar'];
+      
     
       $input = array(
      'postID' => $postID,
@@ -95,7 +97,8 @@ class Persistence {
      'postVideo' => $postVideo,
      'postText' => $postText,
      'pageID' => $pageID,
-     'postImage' => $postImage);
+     'postImage' => $postImage,
+      'avatar' => $avatar);
     
     if($this->validate_input($input) == true) {
       if( isset($this->data[$pageID]) == false ) {
@@ -107,7 +110,7 @@ class Persistence {
       $this->data[$pageID][] = $input;
       
        
-        $sql="INSERT INTO posts (postID, username, postText, postVideo, pageID, postImage) VALUES ('$postID', '$username', '$postText', '$postVideo', '$pageID', '$postImage');";
+        $sql="INSERT INTO posts (postID, username, postText, postVideo, pageID, postImage, avatar) VALUES ('$postID', '$username', '$postText', '$postVideo', '$pageID', '$postImage', '$avatar');";
         
         mysqli_query($con,$sql);
         
@@ -143,8 +146,8 @@ class Persistence {
     }
     $input['username'] = htmlentities($input['username']);
 
-    $input['postText'] = substr($input['postText'], 0, 300);
-    if($this->check_string($input['postText'], 5) == false) {
+    $input['postText'] = substr($input['postText'], 0, 250);
+    if($this->check_string($input['postText'], 1) == false) {
       return false;
     }
     $input['postText'] = htmlentities($input['postText']);

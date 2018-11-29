@@ -32,7 +32,7 @@
 		$console = empty($_POST['console']) ? '' : $_POST['console'];
 		$gameType = empty($_POST['gameType']) ? '' : $_POST['gameType'];
 		
-		$con = mysqli_connect('localhost' ,'root','Capstone18','FFF');
+		 
 		
 		if (!$con) {
 		    die('Could not connect: ' . mysqli_error($con));
@@ -57,24 +57,18 @@
 			
 			$hashedPassword = hash('sha256', $password);
 			
-            $avatar = rand(1,8);
-            
-			$insert_sql = "INSERT INTO members (firstName, lastName, username, password, email, console, gameType, avatar) VALUES ('" . $firstName . "', '" .
-            $lastName . "', '" . $username . "', '" . $hashedPassword . "', '" . $email . "', '" . $console . "', '" . $gameType . "', '" . $avatar . "');";
-			
+			$insert_sql = "INSERT INTO members (firstName, lastName, username, password, email, console, gameType) VALUES ('" . $firstName . "', '" . 
+			$lastName . "', '" . $username . "', '" . $hashedPassword . "', '" . $email . "', '" . $console . "', " . $gameType . ");";
+
+					
 			if(!mysqli_query($con,$insert_sql)){
 				$error = "User could not be created";
 				require "registration_form.php";
 				return;
 			}
 			else {
-                $_SESSION['loggedin'] = $username;
-                $_SESSION['avatar'] = $avatar;
-                $_SESSION['firstName'] = $firstName;
-                $_SESSION['lastName'] = $lastName;
-                $_SESSION['gameType'] = $gameType;
-                $_SESSION['console'] = $console;
-				header("Location: social.php");
+				$_SESSION['loggedin'] = $username;
+				header("Location: friendQuery.php");
 			}
 			
 		}

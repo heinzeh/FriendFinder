@@ -43,6 +43,11 @@
 			
 		if ($hashedPassword == $row['password'] && $hashedPassword != "") {
 			$_SESSION['loggedin'] = $username;
+            $_SESSION['avatar'] = $row['avatar'];
+            $_SESSION['firstName'] = $row['firstName'];
+            $_SESSION['lastName'] = $row['lastName'];
+            $_SESSION['gameType'] = $row['gameType'];
+            $_SESSION['console'] = $row['console'];
 			header("Location: social.php");
 				
 		} 

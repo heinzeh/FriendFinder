@@ -9,7 +9,7 @@
 <html>
 <head>
 <title>Fortnite Friend Finder</title>
-<link href="app.css" rel="stylesheet" type="text/css">
+    <link href="app.css" rel="stylesheet" type="text/css">
 <script src="jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
 <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
@@ -48,30 +48,20 @@ function showUser(str) {
 
 function showButton () { $('#refresh').show(); }
 </script>
-<div>
+</head>
+<body>
 <!-- Navbar -->
-<div class="w3-top">
- <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Table"><i class="fa fa-globe"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="My Account">
-    <img src="me.jpg" class="w3-circle" style="height:23px;width:23px" alt="Profile" onclick="location.href='profile.php';">
-  </a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
-  <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-      <a href="#" class="w3-bar-item w3-button">Austin Parrish posted a video</a>
-      <a href="#" class="w3-bar-item w3-button">Lee Offir created looking for group post</a>
+    <div class="w3-top">
+        <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+            <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" href='social.php'><i class="fa fa-home w3-margin-right"></i>Home</a>
+            <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="My Account" href='profile.php'>
+                <img src=<?php echo("'avatars/" . $_SESSION['avatar'] . ".jpg'");?> class="w3-circle" style="height:23px;width:23px" alt="Profile">
+            </a>
+            <button class="w3-bar-item w3-button w3-left w3-padding-large" onclick="location.href='friendQuery.php';">FriendFinder</button>
+            <button class="w3-bar-item w3-button w3-right w3-padding-large" onclick="location.href='logout.php';">Log Out</button>
+        </div>
     </div>
-  </div>
-        <button class="w3-button w3-left"><a href="friendQuery.php">FriendFinder</button>
- 
- <button class="redButton w3-button w3-right" onclick="location.href='logout.php';">Log Out</button>
- </div>
-</div>
 
 <!-- Navbar on small screens -->
 <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
@@ -80,9 +70,9 @@ function showButton () { $('#refresh').show(); }
   <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
   <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
 </div>
-</div>
+
 <div id="mainContainer">
-        <div class="titleWrapper"><h1 class = "titleWrapper" style="padding-top: 40px;">Fortnite Friend Finder</h1>
+        <div class="titleWrapper"><h1 class = "titleWrapper" style="padding-top: 100px;">Fortnite Friend Finder</h1>
 		</div>
 <form>
 <select name="selectmenu" id="selectmenu" onchange="showUser(this.value)">
@@ -94,15 +84,6 @@ function showButton () { $('#refresh').show(); }
 <br>
 <div id="txtHint"><b>Select your preferred gametype above to view people looking for partners.</b></div>
 <br>
-<button id="refresh" class="greenButton" onclick="showUser(document.getElementById('selectmenu').value);" style="display: none;">Refresh List</button>
-
-
-<div class="logoutWrapper roundBox">
-		
-		<br>
-		<button class="redButton" onclick="location.href='logout.php';">Log Out</button>
-
 </div>
-
 </body>
 </html>

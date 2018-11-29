@@ -19,6 +19,13 @@
   text-align: center;
 }
 
+#accountWrapper {
+    max-width:1200px;
+    text-align: center;
+    margin: 0px auto;
+    font-size: 20px;
+}
+
 
 .greenButton{
   display: block;

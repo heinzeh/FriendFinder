@@ -37,7 +37,7 @@
             <input type="hidden" name="action" value="do_registration">
             
             <div class="stack">
-                <label for="username">Epic Games Username:</label>
+                <label for="username">Username:</label>
                 <input type="text" id="username" name="username" class="ui-widget-content ui-corner-all" autofocus value="<?php print $username; ?>">
             </div>
             
@@ -65,11 +65,7 @@
                 <label for="email">Email:</label>
                 <input type="text" id="email" name="email" class="ui-widget-content ui-corner-all"  value="<?php print $email; ?>">
             </div>
-		
-            <div class="stack">
-                <label for="gamertag">Gamertag:</label>
-                <input type="text" id="gamertag" name="gamertag" class="ui-widget-content ui-corner-all" value="<?php print $gamertag; ?>">
-            </div>
+
             
             <div class="stack">
             	<label for="console" >Platform:</label>
