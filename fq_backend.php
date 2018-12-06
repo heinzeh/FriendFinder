@@ -41,7 +41,7 @@ echo "<table bgcolor='#808080' class='table table-dark table-hover'>
 </tr>";
 while($row = mysqli_fetch_array($result)) {
     echo "<tr>";
-    echo "<td> <a href='https://www.friendfinder.com/?username=" . $row['username'] . "'> " . $row['username'] . "</a> </td>";
+    echo "<td> <a href='profile.php?username=" . $row['username'] . "'> " . $row['username'] . "</a> </td>";
     echo "<td>" . $row['firstName'] . "</td>";
     echo "<td>" . $row['lastName'] . "</td>";
     echo "<td>" . $row['console'] . "</td>";

@@ -37,7 +37,8 @@
         <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
             <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" href='social.php'><i class="fa fa-home w3-margin-right"></i>Home</a>
-            <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="My Account" href='profile.php'>
+<!-- change link to account editing-->
+            <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="My Account" href="user_form.php">
                 <img src="<?php echo("avatars/" . $_SESSION['avatar'] . ".jpg")?>" class="w3-circle" style="height:23px;width:23px" alt="Profile">
             </a>
             <button class="w3-bar-item w3-button w3-left w3-padding-large" onclick="location.href='friendQuery.php';">FriendFinder</button>
@@ -63,11 +64,13 @@
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
          <h4 class="w3-center">My Profile</h4>
-        <p class="w3-center"><img src=<?php echo("avatars/" . $_SESSION['avatar'] . ".jpg")?> class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+        <a title="My Account" href="profile.php?username=<?php echo $_SESSION['loggedin'];?>">
+                <p class="w3-center"><img src="<?php echo("avatars/" . $_SESSION['avatar'] . ".jpg")?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+        </a>
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Columbia, MO</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> March 3rd, 1996</p>
+         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i><?php echo $_SESSION['loggedin']; ?></p>
+         <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?></p>
+         <p><i class="fa fa-gamepad fa-fw w3-margin-right w3-text-theme"></i><?php echo strtoupper($_SESSION['console']); ?></p>
         </div>
       </div>
       <br>
@@ -113,18 +116,13 @@
 -->
 
       <!-- Interests -->
-      <div class="w3-card w3-round w3-white w3-hide-small">
-        <div class="w3-container">
-          <p>Upcoming Events:</p>
-          <img src="unnamed.jpg" alt="fortnite" style="width:100%;">
-          <p><strong>Fortnite Party</strong></p>
-          <p>Friday 5:30 P.M.</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
-        </div>
-      </div>
-
-      <br>
-
+      <div class="w3-card w3-round w3-white w3-hide-small" style="padding: 0px;">
+        <div class="w3-container">
+          <p>Fortnite Events:</p>
+          <img src="unnamed.jpg" alt="fortnite" style="width:100%;" onclick="location.href='https://fortniteintel.com/events/';">
+          <p>Click image for Fortnite Events page</p>
+        </div>
+      </div>
       <!-- Alert Box -->
 <!--
       <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
@@ -197,8 +195,10 @@
                 ?>
             <li>
             <div class="w3-container w3-card w3-white w3-round w3-margin" id="post_<?php echo($post['id']); ?>"><br>
-            <img src=<?php echo("avatars/" . $post['avatar'] . ".jpg");?> alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-            <h4><?php echo($post['username']); ?></h4><br>
+            <a href= <?php echo "'profile.php?username=" . $post['username'] . "'"?> >
+                <img src="<?php echo("avatars/" . $post['avatar'] . ".jpg");?>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            </a>
+            <h4><?php echo("<a href='profile.php?username=" . $post['username'] . "' style = 'color: inherit;'> " . $post['username'] . "</a>") ?></h4><br>
             <hr class="w3-clear">
             <p><?php echo($post['postText']);?></p>
 
@@ -234,8 +234,8 @@
 
     <!-- Right Column -->
     <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
+      <div class="w3-card w3-round w3-dark-gray w3-center">
+        <div class="w3-rest">
 <a class="twitter-timeline" data-height="1500" data-theme="dark" data-link-color="#2B7BB9" href="https://twitter.com/FortniteGame?ref_src=twsrc%5Etfw">Tweets by FortniteGame</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>        </div>
       </div>
       <br>

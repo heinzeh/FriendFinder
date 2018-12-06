@@ -55,8 +55,8 @@ function showButton () { $('#refresh').show(); }
         <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
             <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" href='social.php'><i class="fa fa-home w3-margin-right"></i>Home</a>
-            <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="My Account" href='profile.php'>
-                <img src=<?php echo("'avatars/" . $_SESSION['avatar'] . ".jpg'");?> class="w3-circle" style="height:23px;width:23px" alt="Profile">
+            <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="My Account" href="user_form.php">
+                <img src="<?php echo("avatars/" . $_SESSION['avatar'] . ".jpg");?>" class="w3-circle" style="height:23px;width:23px" alt="Profile">
             </a>
             <button class="w3-bar-item w3-button w3-left w3-padding-large" onclick="location.href='friendQuery.php';">FriendFinder</button>
             <button class="w3-bar-item w3-button w3-right w3-padding-large" onclick="location.href='logout.php';">Log Out</button>

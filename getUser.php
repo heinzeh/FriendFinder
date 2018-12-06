@@ -41,7 +41,8 @@
 				}
 				else{
 					$hashedPassword = hash('sha256', $password);
-					$sql="UPDATE Users SET firstName='" . $firstName . "', lastName='" . $lastName . "', password='" . $password . "' WHERE username='" . $loggedIn . "';";
+					$sql="UPDATE members SET firstName='" . $firstName . "', lastName='" . $lastName . "', password='" . $hashedPassword . "' WHERE username='" . $loggedIn . "';";
+                    
 				}
 			}
 			
@@ -51,7 +52,10 @@
 				require "user_form.php";
 			}
 			else{
+                $_SESSION['firstName'] = $firstName;
+                $_SESSION['lastName'] = $lastName;
 				header("Location: social.php");
+            
 			}
 			
 		} else {	

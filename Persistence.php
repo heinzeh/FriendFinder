@@ -74,7 +74,7 @@ class Persistence {
       }
       
       if($vars['postImage'] != ""){
-          $step1=explode('gallery/', $vars['postImage']);
+          $step1=explode('a/', $vars['postImage']);
           $imageCode = $step1[1];
       } else{
           $imageCode="";

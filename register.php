@@ -62,21 +62,29 @@
 			$insert_sql = "INSERT INTO members (firstName, lastName, username, password, email, console, gameType, avatar) VALUES ('" . $firstName . "', '" .
             $lastName . "', '" . $username . "', '" . $hashedPassword . "', '" . $email . "', '" . $console . "', '" . $gameType . "', '" . $avatar . "');";
 			
+			$statSQL = "INSERT INTO stats (Username) VALUES ('" . $username . "');";
+			
 			if(!mysqli_query($con,$insert_sql)){
 				$error = "User could not be created";
 				require "registration_form.php";
 				return;
 			}
 			else {
-                $_SESSION['loggedin'] = $username;
-                $_SESSION['avatar'] = $avatar;
-                $_SESSION['firstName'] = $firstName;
-                $_SESSION['lastName'] = $lastName;
-                $_SESSION['gameType'] = $gameType;
-                $_SESSION['console'] = $console;
-				header("Location: social.php");
+                if(mysqli_query($con,$statSQL)){
+					$_SESSION['loggedin'] = $username;
+					$_SESSION['avatar'] = $avatar;
+					$_SESSION['firstName'] = $firstName;
+					$_SESSION['lastName'] = $lastName;
+					$_SESSION['gameType'] = $gameType;
+					$_SESSION['console'] = $console;
+					header("Location: social.php");
+				}
+				else{
+					$error = "stat could not be created";
+					require "registration_form.php";
+					return;
+				}
 			}
-			
 		}
 		else {
 			$error = "Please fill out all fields.";
